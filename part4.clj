@@ -15,9 +15,10 @@
 (defn valid [parts] (every? #(contains? parts %) required-parts))
 
 (def passports (map #(str/replace % "\n" " ") (str/split (slurp "day4.txt") #"\n\n")))
+
 (def passport-parts (map parse-passport passports))
 
-(println (count (filter valid passport-parts)))
+(println "Part 1:" (count (filter valid passport-parts)))
 
 ; part 2
 
@@ -42,6 +43,4 @@
 (defn parts-valid? [parts]
   (every? part-valid? parts))
 
-(println (count (filter (every-pred parts-valid? valid) passport-parts)))
-
-(println (valid-height? "121"))
+(println "Part 2:" (count (filter (every-pred parts-valid? valid) passport-parts)))
