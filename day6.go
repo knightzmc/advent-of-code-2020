@@ -41,15 +41,15 @@ func getLines(text string) []string {
 	return lines
 }
 func getQuestionsAnyoneAnswered(group string) int {
-	questions := make(map[rune]int)
+	questions := make(map[rune]bool) //pretty much a set
 
 	for _, line := range getLines(group) {
 		for _, char := range line {
-			_, success := questions[char]
-			if success {
+			_, present := questions[char]
+			if present {
 				continue
 			}
-			questions[char] = 1
+			questions[char] = true
 		}
 	}
 	total := 0
