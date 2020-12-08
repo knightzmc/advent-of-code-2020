@@ -1,0 +1,20 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+
+    id 'application'
+}
+
+repositories {
+    // Use JCenter for resolving dependencies.
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'me.bristermitten.aoc.day7.AppKt'
+}
