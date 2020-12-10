@@ -79,12 +79,63 @@ bool is_valid(int comp, int *preamble)
     return false;
 }
 
+int *minmaxbetween(int r1, int r2, int *numbers, int len)
+{
+    int min, max = 0;
+    for (int i = r1; i < r2; i++)
+    {
+        int num = numbers[i];
+        if (num < min)
+        {
+            min = num;
+        }
+        if (num > max)
+        {
+            max = num;
+        }
+    }
+
+    int *arr = malloc(2 * sizeof(int));
+    arr[0] = min;
+    arr[1] = max;
+    return arr;
+}
+
+int *findconsecutivesum(int total, int *numbers, int length)
+{
+    int sum = 0;
+    for (int i = 0; i < length; i++)
+    {
+        if (numbers[i] > total)
+        {
+            continue;
+        }
+        for (int j = i; j < length; j++)
+        {
+            sum += numbers[j];
+            if (sum == total)
+            {
+                int *returned = malloc(2 * sizeof(int));
+                returned[0] = i;
+                returned[1] = j;
+                return returned;
+            }
+            if (sum > total)
+            {
+                sum = 0;
+                break;
+            }
+        }
+    }
+}
+
 int main()
 {
     int *numbers = load_numbers();
 
     int preamble[25];
 
+    int invalid = -1;
     for (int i = 0; i < 1000 - 25; i++)
     {
         for (int j = 0; j < 25; j++)
@@ -94,10 +145,21 @@ int main()
         int num = numbers[i + 25];
         if (!is_valid(num, preamble))
         {
+            invalid = num;
             printf("%d\n", num);
             break;
         }
     }
 
+    //part 2
+
+    int *sum = findconsecutivesum(invalid, numbers, 1000);
+
+    int *minmax = minmaxbetween(sum[0], sum[1], numbers, 1000);
+
+    printf("%d\n", minmax[0] + minmax[1]);
+
     free(numbers);
+    free(sum);
+    free(minmax);
 }
