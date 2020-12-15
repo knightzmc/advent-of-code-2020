@@ -12,12 +12,13 @@ My Advent of Code solutions in a mixture of languages
 * Day 7: Kotlin
 * Day 8: Java
 * Day 9: C
+* Day 10: Julia
+* Day 11: Rust
 
 ???
 * Day 25: Elara
 
 ## Languages I'd like to use 
-* Julia
 * Dart
 * C#
 * Scala
